@@ -8,7 +8,7 @@ use function implode;
 /**
  * @immutable
  */
-class Task
+final class Task
 {
     public string $id;
     public TaskDriver $driver;
@@ -36,7 +36,7 @@ class Task
         $this->durationSecs = $durationSecs;
     }
 
-    public static function fromArray(array $data)
+    public static function fromArray(array $data): self
     {
         return new static(
             TaskDriver::tryFrom($data['executor']) ?? throw new InvalidArgumentException("Unknown executor: ${data['executor']}"),

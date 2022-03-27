@@ -7,4 +7,5 @@ enum TaskApp: string
     case BOMBARDIER = 'bombardier';
     case DRIPPER = 'dripper';
     case DNSPERF = 'dnsperf';
+    case MHDDOS = 'mhddos';
 }

@@ -8,6 +8,7 @@ use App\AppRunner\AppRunner;
 use App\AppRunner\BombardierRunner;
 use App\AppRunner\DNSPerfRunner;
 use App\AppRunner\DRipperRunner;
+use App\AppRunner\MHDDoSRunner;
 use App\Struct\Task;
 use App\Struct\TaskApp;
 use App\TasksProvider\FileTasksProvider;
@@ -127,13 +128,12 @@ class RunClientCommand extends Command
     }
     private function createRunner(Task $task): AppRunner
     {
-        $runner = match ($task->app) {
+        return match ($task->app) {
             TaskApp::BOMBARDIER => new BombardierRunner($task),
             TaskApp::DRIPPER => new DRipperRunner($task),
             TaskApp::DNSPERF => new DNSPerfRunner($task),
+            TaskApp::MHDDOS => new MHDDoSRunner($task),
         };
-
-        return $runner;
     }
 
     private function updateTasks(): void
